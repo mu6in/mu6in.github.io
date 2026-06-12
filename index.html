@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김무빈 - 개인 포트폴리오</title>
+    <!-- Tailwind CSS 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts 설정 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome (아이콘용) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* 부드러운 배경색 */
+            color: #334155; /* 가독성 좋은 텍스트 색상 */
+        }
+        
+        .profile-img-container {
+            /* 이미지 컨테이너 스타일링 (원형, 그림자) */
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            border: 4px solid white;
+            width: 250px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img-container:hover {
+            transform: scale(1.05); /* 호버 시 약간 커지는 효과 */
+        }
+
+        .profile-icon {
+            /* 이미지가 없을 때 보여줄 기본 아이콘 설정 */
+            font-size: 100px;
+            color: #3b82f6; /* 파란색 계열 포인트 */
+        }
+
+        .highlight-text {
+            /* 강조 텍스트 (이름 등) 색상 지정 */
+            color: #2563eb;
+            font-weight: 700;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #1e293b;
+        }
+
+        /* 제목 아래 파란색 밑줄 효과 */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: #2563eb;
+            border-radius: 2px;
+        }
+        
+        /* 정보 리스트 스타일 */
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            color: #475569;
+        }
+        
+        .info-icon {
+            width: 24px;
+            text-align: center;
+            margin-right: 12px;
+            color: #3b82f6;
+            font-size: 1.1rem;
+        }
+
+        .info-text {
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body class="antialiased min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+
+    <!-- 메인 컨테이너 -->
+    <div class="max-w-4xl w-full space-y-12 bg-white p-10 rounded-2xl shadow-xl">
+        
+        <!-- About Me 섹션 헤더 -->
+        <div class="text-center">
+            <h2 class="section-title">About Me</h2>
+        </div>
+
+        <!-- 내용 영역 (이미지 + 텍스트) -->
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-16 justify-center">
+            
+            <!-- 왼쪽: 프로필 이미지 (또는 아이콘) 영역 -->
+            <div class="flex-shrink-0">
+                <div class="profile-img-container">
+                    <!-- 실제 이미지가 있다면 img 태그를 사용하세요. 여기서는 아이콘으로 대체합니다. -->
+                    <!-- <img src="profile.jpg" alt="김무빈 프로필" class="w-full h-full object-cover"> -->
+                    <i class="fa-solid fa-laptop-code profile-icon"></i>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 텍스트 및 정보 영역 -->
+            <div class="flex-col max-w-lg w-full">
+                <!-- 인사말 및 한 줄 소개 -->
+                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">
+                    끊임없이 배우고 도전하는 예비 개발자, <span class="highlight-text">김무빈</span>입니다.
+                </h3>
+                
+                <!-- 상세 소개 (대학교 1학년 수준에 맞게 작성) -->
+                <p class="text-gray-600 leading-relaxed mb-8 text-base">
+                    안녕하세요! 컴퓨터의 원리를 배우고 스스로 무언가를 만들어내는 것에 흥미를 느껴 소프트웨어공학과에 진학하게 되었습니다. 현재는 대학교 1학년으로서 파이썬과 html 등 프로그래밍 기초를 탄탄히 다지는 데 집중하고 있습니다. 
+                    <br><br>
+                    아직은 배우는 단계지만, 모르는 것을 두려워하지 않고 끊임없이 질문하며 성장하려고 노력합니다. 앞으로 다양한 프로젝트 경험을 쌓아 사용자에게 편리함을 제공하는 실력 있는 개발자가 되고 싶습니다.
+                </p>
+
+                <!-- 상세 정보 리스트 (그리드 레이아웃으로 2열 배치) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
+                    
+                    <!-- 위치 정보 -->
+                    <div class="info-item">
+                        <i class="fa-solid fa-location-dot info-icon"></i>
+                        <span class="info-text">대한민국, 인천</span>
+                    </div>
+
+                    <!-- 소속/학력 정보 -->
+                    <div class="info-item">
+                        <i class="fa-solid fa-graduation-cap info-icon"></i>
+                        <span class="info-text">동양미래대학교 컴퓨터소프트웨어공학과 1학년 재학중</span>
+                    </div>
+
+                    <!-- 관심 분야 -->
+                    <div class="info-item">
+                        <i class="fa-solid fa-code info-icon"></i>
+                        <span class="info-text">웹 프로그래밍 관심</span>
+                    </div>
+                    
+                    <!-- 이메일 (선택적 추가) -->
+                    <div class="info-item">
+                        <i class="fa-solid fa-envelope info-icon"></i>
+                        <span class="info-text">rlaanqls0220@dongyang.ac.kr</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>
