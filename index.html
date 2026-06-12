@@ -1,166 +1,260 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>김무빈 - 개인 포트폴리오</title>
-    <!-- Tailwind CSS 로드 -->
+    <title>김무빈 | 포트폴리오</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts 설정 -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome (아이콘용) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1e40af', /* 교수님 사이트와 유사한 신뢰감 있는 딥블루 */
+                        secondary: '#3b82f6',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f8fafc; /* 부드러운 배경색 */
-            color: #334155; /* 가독성 좋은 텍스트 색상 */
-        }
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; }
         
-        .profile-img-container {
-            /* 이미지 컨테이너 스타일링 (원형, 그림자) */
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-            border: 4px solid white;
-            width: 250px;
-            height: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            transition: transform 0.3s ease;
-        }
-
-        .profile-img-container:hover {
-            transform: scale(1.05); /* 호버 시 약간 커지는 효과 */
-        }
-
-        .profile-icon {
-            /* 이미지가 없을 때 보여줄 기본 아이콘 설정 */
-            font-size: 100px;
-            color: #3b82f6; /* 파란색 계열 포인트 */
-        }
-
-        .highlight-text {
-            /* 강조 텍스트 (이름 등) 색상 지정 */
-            color: #2563eb;
-            font-weight: 700;
-        }
-        
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2rem;
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: #1e293b;
-        }
-
-        /* 제목 아래 파란색 밑줄 효과 */
-        .section-title::after {
-            content: '';
+        /* 타임라인 스타일 */
+        .timeline-line {
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 4px;
-            background-color: #2563eb;
-            border-radius: 2px;
+            left: 0.75rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e2e8f0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0.35rem;
+            top: 0.25rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: #3b82f6;
+            border: 3px solid white;
+            box-shadow: 0 0 0 1px #3b82f6;
         }
         
-        /* 정보 리스트 스타일 */
-        .info-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.75rem;
-            color: #475569;
-        }
-        
-        .info-icon {
-            width: 24px;
-            text-align: center;
-            margin-right: 12px;
-            color: #3b82f6;
-            font-size: 1.1rem;
-        }
-
-        .info-text {
-            font-size: 0.95rem;
+        /* 프로필 이미지 아이콘 (이미지가 없을 때 대체용) */
+        .profile-icon-bg {
+            background: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%);
         }
     </style>
 </head>
 
-<body class="antialiased min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<body class="text-slate-800 antialiased leading-relaxed">
 
-    <!-- 메인 컨테이너 -->
-    <div class="max-w-4xl w-full space-y-12 bg-white p-10 rounded-2xl shadow-xl">
-        
-        <!-- About Me 섹션 헤더 -->
-        <div class="text-center">
-            <h2 class="section-title">About Me</h2>
+    <!-- 상단 네비게이션 바 -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-bold text-xl text-primary tracking-tight">M. Kim</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-slate-600 hover:text-primary transition font-medium text-sm">About</a>
+                    <a href="#education" class="text-slate-600 hover:text-primary transition font-medium text-sm">Education</a>
+                    <a href="#projects" class="text-slate-600 hover:text-primary transition font-medium text-sm">Projects</a>
+                    <a href="#skills" class="text-slate-600 hover:text-primary transition font-medium text-sm">Skills</a>
+                </div>
+            </div>
         </div>
+    </nav>
 
-        <!-- 내용 영역 (이미지 + 텍스트) -->
-        <div class="flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-16 justify-center">
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+        <div class="flex flex-col lg:flex-row gap-12">
             
-            <!-- 왼쪽: 프로필 이미지 (또는 아이콘) 영역 -->
-            <div class="flex-shrink-0">
-                <div class="profile-img-container">
-                    <!-- 실제 이미지가 있다면 img 태그를 사용하세요. 여기서는 아이콘으로 대체합니다. -->
-                    <!-- <img src="profile.jpg" alt="김무빈 프로필" class="w-full h-full object-cover"> -->
-                    <i class="fa-solid fa-laptop-code profile-icon"></i>
+            <!-- 왼쪽 사이드바 (프로필 및 연락처) -->
+            <div class="lg:w-1/3">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 sticky top-28">
+                    
+                    <!-- 프로필 이미지 대체 영역 -->
+                    <div class="w-40 h-40 mx-auto rounded-full profile-icon-bg flex items-center justify-center border-4 border-white shadow-lg mb-6">
+                        <i class="fa-solid fa-user-astronaut text-6xl text-primary/70"></i>
+                    </div>
+
+                    <div class="text-center mb-8">
+                        <h1 class="text-2xl font-bold text-slate-900 mb-1">김무빈</h1>
+                        <p class="text-slate-500 font-medium">예비 개발자</p>
+                    </div>
+
+                    <!-- 연락처 정보 -->
+                    <div class="space-y-4 mb-8">
+                        <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 border-b pb-2">Contact</h3>
+                        <div class="flex items-start text-sm text-slate-600">
+                            <i class="fa-solid fa-building text-primary mt-1 w-6 text-center"></i>
+                            <span>동양미래대학교<br>컴퓨터소프트웨어공학과</span>
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <i class="fa-solid fa-envelope text-primary w-6 text-center"></i>
+                            <a href="mailto:moobin@example.com" class="hover:text-primary transition">rlaanqls0220@dongyang.ac.kr</a>
+                        </div>
+                        <div class="flex items-center text-sm text-slate-600">
+                            <i class="fa-solid fa-location-dot text-primary w-6 text-center"></i>
+                            <span>인천광역시, 대한민국</span>
+                        </div>
+                    </div>
+
+                    <!-- 기술 스택 요약 -->
+                    <div id="skills">
+                        <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 border-b pb-2">Technical Skills</h3>
+                        
+                        <div class="mb-4">
+                            <p class="text-xs font-semibold text-slate-500 mb-2">Programming Languages</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs font-medium">HTML / CSS</span>
+                                <span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs font-medium">Java</span>
+                                <span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs font-medium">Python</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-2">Web & Tools</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs font-medium">HTML/CSS</span>
+                                <span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs font-medium">Git/GitHub</span>
+                                <span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs font-medium">VS Code</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <!-- 오른쪽: 텍스트 및 정보 영역 -->
-            <div class="flex-col max-w-lg w-full">
-                <!-- 인사말 및 한 줄 소개 -->
-                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">
-                    끊임없이 배우고 도전하는 예비 개발자, <span class="highlight-text">김무빈</span>입니다.
-                </h3>
+            <!-- 오른쪽 메인 콘텐츠 -->
+            <div class="lg:w-2/3 space-y-16">
                 
-                <!-- 상세 소개 (대학교 1학년 수준에 맞게 작성) -->
-                <p class="text-gray-600 leading-relaxed mb-8 text-base">
-                    안녕하세요! 컴퓨터의 원리를 배우고 스스로 무언가를 만들어내는 것에 흥미를 느껴 소프트웨어공학과에 진학하게 되었습니다. 현재는 대학교 1학년으로서 파이썬과 html 등 프로그래밍 기초를 탄탄히 다지는 데 집중하고 있습니다. 
-                    <br><br>
-                    아직은 배우는 단계지만, 모르는 것을 두려워하지 않고 끊임없이 질문하며 성장하려고 노력합니다. 앞으로 다양한 프로젝트 경험을 쌓아 사용자에게 편리함을 제공하는 실력 있는 개발자가 되고 싶습니다.
-                </p>
+                <!-- About 섹션 -->
+                <section id="about">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">안녕하세요, <br><span class="text-primary">어제보다 오늘 더 성장하는 학생 개발자</span> 김무빈입니다.</h2>
+                    <div class="text-slate-600 space-y-4 text-base leading-relaxed">
+                        <p>
+                            현재 <strong>동양미래대학교 컴퓨터소프트웨어공학과 1학년</strong>에 재학 중이며, 컴퓨터 과학의 기초를 탄탄히 다지고 있습니다. 
+                            단순히 코드를 타이핑하는 것을 넘어, 컴퓨터가 어떻게 명령을 이해하고 실행하는지 그 근본적인 원리에 깊은 흥미를 느끼고 있습니다.
+                        </p>
+                        <p>
+                            백엔드 개발과 웹 프로그래밍 분야에 관심을 두고 있으며, C언어와 Java를 시작으로 자료구조, 알고리즘 등 소프트웨어 엔지니어가 되기 위한 필수 역량을 하나씩 쌓아가고 있습니다. 
+                            어려운 문제에 부딪혔을 때 원인을 분석하고 해결해 나가는 과정을 즐기며, 동료들과의 코드 리뷰 및 소통을 통해 함께 성장하는 것을 가치 있게 생각합니다.
+                        </p>
+                    </div>
+                </section>
 
-                <!-- 상세 정보 리스트 (그리드 레이아웃으로 2열 배치) -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
+                <hr class="border-slate-200">
+
+                <!-- Education 섹션 -->
+                <section id="education">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-8 flex items-center">
+                        <i class="fa-solid fa-graduation-cap mr-3 text-primary"></i> Education
+                    </h2>
                     
-                    <!-- 위치 정보 -->
-                    <div class="info-item">
-                        <i class="fa-solid fa-location-dot info-icon"></i>
-                        <span class="info-text">대한민국, 인천</span>
+                    <div class="relative pl-8">
+                        <div class="timeline-line"></div>
+                        
+                        <!-- 대학교 -->
+                        <div class="relative mb-8">
+                            <div class="timeline-dot"></div>
+                            <h3 class="text-lg font-bold text-slate-900">동양미래대학교</h3>
+                            <p class="text-primary font-medium mb-1">컴퓨터소프트웨어공학과</p>
+                            <p class="text-sm text-slate-500 mb-3">2026. 03 ~ 현재 (1학년 재학중)</p>
+                            <ul class="list-disc list-inside text-sm text-slate-600 space-y-1 ml-1">
+                                <li><strong>주요 학습 과목:</strong> 파이썬 프로그래밍 기초, 컴퓨팅 사고력, 웹 프로그래밍 입문</li>
+                                <li>프로그래밍의 기본 논리와 알고리즘적 사고방식 함양</li>
+                                <li>학부 내 코딩 스터디 그룹 참여 및 기초 알고리즘 문제 풀이 진행</li>
+                            </ul>
+                        </div>
                     </div>
+                </section>
 
-                    <!-- 소속/학력 정보 -->
-                    <div class="info-item">
-                        <i class="fa-solid fa-graduation-cap info-icon"></i>
-                        <span class="info-text">동양미래대학교 컴퓨터소프트웨어공학과 1학년 재학중</span>
-                    </div>
+                <hr class="border-slate-200">
 
-                    <!-- 관심 분야 -->
-                    <div class="info-item">
-                        <i class="fa-solid fa-code info-icon"></i>
-                        <span class="info-text">웹 프로그래밍 관심</span>
-                    </div>
+                <!-- Projects & Learning 섹션 (경력 대신 학생에 맞는 내용으로 구성) -->
+                <section id="projects">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-8 flex items-center">
+                        <i class="fa-solid fa-laptop-code mr-3 text-primary"></i> Learning & Projects
+                    </h2>
                     
-                    <!-- 이메일 (선택적 추가) -->
-                    <div class="info-item">
-                        <i class="fa-solid fa-envelope info-icon"></i>
-                        <span class="info-text">rlaanqls0220@dongyang.ac.kr</span>
-                    </div>
+                    <div class="space-y-8">
+                        <!-- 프로젝트 1 -->
 
-                </div>
+                        <!-- 학습 활동 -->
+                        <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-slate-900">팀 프로젝트 웹페이지 구축</h3>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-4">2026. 06</p>
+                            <p class="text-sm text-slate-600 mb-4">
+                                웹 기술에 대한 이해도를 높이기 위해 HTML, CSS, 그리고 Java를 학습하며 웹페이지를 직접 제작했습니다. 반응형 웹 디자인의 개념을 실습하는 계기가 되었습니다.
+                            </p>
+                            <div class="flex gap-2 text-xs text-slate-500 font-medium">
+                                <span class="bg-slate-100 px-2 py-1 rounded">HTML5</span>
+                                <span class="bg-slate-100 px-2 py-1 rounded">Tailwind CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-slate-200">
+
+                <!-- Future Goals 섹션 -->
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center">
+                        <i class="fa-solid fa-bullseye mr-3 text-primary"></i> Future Goals
+                    </h2>
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-100">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm">자료구조와 알고리즘 마스터</h4>
+                                    <p class="text-xs text-slate-500 mt-1">효율적인 코드를 작성하기 위한 필수 역량인 자료구조와 알고리즘을 2학년 진학 전까지 성실히 학습하며 마스터 합니다.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm">웹 백엔드 입문</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Java 기초 학습을 마친 후,백엔드를 구축하는 것을 목표로 합니다.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm">정보처리기능사 취득</h4>
+                                    <p class="text-xs text-slate-500 mt-1">IT 기초 지식을 검증하기 위해 관련 자격증 취득을 준비 중입니다.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
             </div>
         </div>
-        
     </div>
+
+    <!-- 푸터 -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-lg font-bold text-white mb-2">Kim Moobin</h2>
+            <p class="text-sm mb-4">Student at Dongyang Mirae University</p>
+            <p class="text-xs">&copy; 2026 Kim Moobin. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
